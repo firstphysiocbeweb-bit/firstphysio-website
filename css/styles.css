@@ -1130,8 +1130,10 @@ img {
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--radius-xl);
     padding: 3rem;
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
     gap: 3rem;
     position: relative;
     overflow: hidden;
@@ -1160,23 +1162,28 @@ img {
 .cta-description {
     font-size: 1.1rem;
     margin-bottom: 2rem;
-    max-width: 500px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .cta-buttons {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .cta-info {
     display: flex;
-    flex-direction: column;
-    gap: 2rem;
+    flex-direction: row;
+    gap: 3rem;
     position: relative;
     z-index: 1;
-    padding-left: 2rem;
-    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    justify-content: center;
+    text-align: left;
 }
 
 .cta-hours h4,
@@ -1209,17 +1216,13 @@ img {
 /* CTA Responsive */
 @media screen and (max-width: 1024px) {
     .cta-card {
-        grid-template-columns: 1fr;
         gap: 2rem;
     }
 
     .cta-info {
-        padding-left: 0;
-        padding-top: 2rem;
-        border-left: none;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: center;
+        gap: 2rem;
     }
 }
 
@@ -1238,6 +1241,8 @@ img {
 
     .cta-info {
         flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
 }
 
