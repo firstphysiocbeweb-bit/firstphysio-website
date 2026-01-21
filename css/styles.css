@@ -1695,3 +1695,27 @@ img {
         max-width: 300px;
     }
 }
+
+/* ================================
+   Practo Widget Hidden Container
+   ================================ */
+/* Hide the Practo widget - we trigger it via our styled buttons */
+practo\:abs_widget {
+    position: fixed !important;
+    bottom: 20px !important;
+    right: 20px !important;
+    z-index: 9999 !important;
+    opacity: 0 !important;
+    pointer-events: auto !important;
+    width: 1px !important;
+    height: 1px !important;
+    overflow: hidden !important;
+}
+
+/* When the Practo widget needs to be visible (for the popup to work) */
+practo\:abs_widget:focus-within,
+practo\:abs_widget:active {
+    opacity: 1 !important;
+    width: auto !important;
+    height: auto !important;
+}

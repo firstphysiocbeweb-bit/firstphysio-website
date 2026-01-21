@@ -64,7 +64,7 @@
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
                     </svg>
                 </button>
-                <a href="contact.html#book" class="btn btn-primary nav-btn"><span>Book Appointment</span></a>
+                <a href="#" class="btn btn-primary nav-btn book-appointment-btn"><span>Book Appointment</span></a>
                 <div class="nav-toggle" id="nav-toggle"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -237,7 +237,12 @@
                 <p>&copy; 2026 First Physio. All rights reserved.</p>
             </div>
         </div>
-    </footer>
+    </footer> <!-- Hidden Practo Booking Widget (triggered by styled buttons) -->
+    <practo:abs_widget widget="8d151b927b32437d"></practo:abs_widget>
+
+    <!-- Practo Booking Widget Script -->
+    <script src="https://www.practo.com/bundles/practopractoapp/js/abs_widget_helper.js"></script>
+
     <script src="js/main.js"></script>
 </body>
 
