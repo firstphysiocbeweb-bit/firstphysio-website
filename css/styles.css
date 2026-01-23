@@ -1719,3 +1719,314 @@ practo\:abs_widget:active {
     width: auto !important;
     height: auto !important;
 }
+
+/* ================================
+   Interactive Body Pain Point Diagram
+   ================================ */
+
+/* Body Diagram Container - Side by Side Layout */
+.body-diagram-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Individual Body View */
+.body-view {
+    text-align: center;
+}
+
+.view-label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* Body Image Wrapper - Relative for positioning hotspots */
+.body-image-wrapper {
+    position: relative;
+    display: inline-block;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg), var(--shadow-glow-blue);
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.body-image-wrapper:hover {
+    transform: scale(1.02);
+    box-shadow: var(--shadow-lg), 0 0 60px rgba(232, 93, 4, 0.3);
+}
+
+.body-img {
+    display: block;
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    border-radius: var(--radius-lg);
+}
+
+/* Pain Point Hotspots */
+.pain-point {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    z-index: 10;
+    text-decoration: none;
+}
+
+.pain-point::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 16px;
+    height: 16px;
+    background: var(--primary-orange);
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(232, 93, 4, 0.8), 0 0 30px rgba(232, 93, 4, 0.4);
+    transition: all var(--transition-fast);
+    z-index: 2;
+}
+
+.pain-point:hover::before {
+    transform: translate(-50%, -50%) scale(1.3);
+    box-shadow: 0 0 25px rgba(232, 93, 4, 1), 0 0 50px rgba(232, 93, 4, 0.6);
+}
+
+/* Pulsing Ring Animation */
+.pulse-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    border: 2px solid var(--primary-orange);
+    border-radius: 50%;
+    animation: pulseRing 2s infinite;
+    z-index: 1;
+}
+
+@keyframes pulseRing {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(2.5);
+        opacity: 0;
+    }
+}
+
+/* Tooltip */
+.pain-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-fast);
+    pointer-events: none;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(232, 93, 4, 0.3);
+    margin-bottom: 10px;
+}
+
+.pain-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: var(--bg-card);
+}
+
+.pain-point:hover .pain-tooltip {
+    opacity: 1;
+    visibility: visible;
+    bottom: calc(100% + 5px);
+}
+
+/* Conditions Quick Links */
+.conditions-quick-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 3rem;
+    padding: 2rem;
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.condition-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background: var(--bg-dark-secondary);
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+    border: 1px solid transparent;
+}
+
+.condition-link:hover {
+    background: rgba(232, 93, 4, 0.1);
+    border-color: var(--primary-orange);
+    color: var(--primary-orange);
+    transform: translateY(-2px);
+}
+
+.condition-icon {
+    font-size: 0.75rem;
+}
+
+/* Responsive Design for Body Diagram */
+@media (max-width: 768px) {
+    .body-diagram-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .body-img {
+        max-width: 280px;
+    }
+
+    .pain-point {
+        width: 24px;
+        height: 24px;
+    }
+
+    .pain-point::before {
+        width: 12px;
+        height: 12px;
+    }
+
+    .pulse-ring {
+        width: 24px;
+        height: 24px;
+    }
+
+    .conditions-quick-links {
+        padding: 1.5rem;
+        gap: 0.75rem;
+    }
+
+    .condition-link {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .body-img {
+        max-width: 240px;
+    }
+
+    .condition-link {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* ================================
+   Pain Not Found CTA
+   ================================ */
+.pain-not-found-cta {
+    margin-top: 4rem;
+    padding: 3rem 2rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-xl);
+    text-align: center;
+    backdrop-filter: blur(10px);
+    transition: all var(--transition-normal);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.pain-not-found-cta:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(232, 93, 4, 0.2);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+}
+
+.cta-text {
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    display: block;
+}
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2.5rem;
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-orange) 100%);
+    color: var(--text-primary);
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all var(--transition-normal);
+    box-shadow: var(--shadow-glow-orange);
+}
+
+.cta-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 50px rgba(232, 93, 4, 0.5);
+    color: var(--text-primary);
+}
+
+.cta-button i {
+    font-size: 1.5rem;
+    transition: transform var(--transition-fast);
+}
+
+.cta-button:hover i {
+    transform: translateX(5px);
+}
+
+@media (max-width: 768px) {
+    .pain-not-found-cta {
+        margin-top: 3rem;
+        padding: 2rem 1.5rem;
+    }
+    
+    .cta-text {
+        font-size: 1.05rem;
+    }
+    
+    .cta-button {
+        padding: 0.875rem 2rem;
+        font-size: 0.95rem;
+    }
+}

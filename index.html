@@ -164,24 +164,97 @@
         </div>
     </section>
 
-    <!-- Body Model Section (moved from hero) -->
+    <!-- Interactive Body Pain Point Diagram -->
     <section class="body-model-section section" id="body-model">
         <div class="container">
-            <div class="body-model-wrapper fade-in">
-                <div class="body-model-content">
-                    <span class="section-subtitle">Where Does It Hurt?</span>
-                    <h2 class="section-title">Expert Care For <span class="text-gradient">Every Part</span> Of Your Body
-                    </h2>
-                    <p>Our physiotherapist is trained to treat pain and injuries across all areas of the body. Click on
-                        a condition below to learn how we can help you.</p>
-                </div>
-                <div class="body-model-image">
-                    <div class="hero-image-wrapper">
-                        <img src="images/body-model.jpg" alt="Physiotherapy treatment areas on human body"
-                            class="hero-img">
-                        <div class="hero-image-glow"></div>
+            <div class="section-header fade-in">
+                <span class="section-subtitle">Where Does It Hurt?</span>
+                <h2 class="section-title">Click on Your <span class="text-gradient">Pain Point</span></h2>
+                <p class="section-description">Select an area on the body diagram below to learn about our specialized
+                    treatment for that condition.</p>
+            </div>
+
+            <!-- Side-by-Side Body Diagram -->
+            <div class="body-diagram-container fade-in">
+                <!-- Front View -->
+                <div class="body-view" data-view="front">
+                    <h3 class="view-label">Front View</h3>
+                    <div class="body-image-wrapper">
+                        <img src="C:/Users/HP/.gemini/antigravity/brain/e2b495fb-5ecf-4d1a-bc47-37cc8aa55a42/body_front_full_clean_1769156285340.png"
+                            alt="Front view of human body" class="body-img">
+
+                        <!-- Left Shoulder -->
+                        <a href="shoulder-pain.html" class="pain-point" style="top: 22%; left: 40%;">
+                            <span class="pulse-ring"></span>
+                            <span class="pain-tooltip">Shoulder Pain</span>
+                        </a>
+
+                        <!-- Right Shoulder -->
+                        <a href="shoulder-pain.html" class="pain-point" style="top: 22%; left: 60%;">
+                            <span class="pulse-ring"></span>
+                            <span class="pain-tooltip">Shoulder Pain</span>
+                        </a>
+
+                        <!-- Left Elbow -->
+                        <a href="sports-injuries.html" class="pain-point" style="top: 38%; left: 34%;">
+                            <span class="pulse-ring"></span>
+                            <span class="pain-tooltip">Elbow Pain</span>
+                        </a>
+
+                        <!-- Right Elbow -->
+                        <a href="sports-injuries.html" class="pain-point" style="top: 38%; left: 66%;">
+                            <span class="pulse-ring"></span>
+                            <span class="pain-tooltip">Elbow Pain</span>
+                        </a>
+
+                        <!-- Left Knee -->
+                        <a href="knee-pain.html" class="pain-point" style="top: 76%; left: 45%;">
+                            <span class="pulse-ring"></span>
+                            <span class="pain-tooltip">Knee Pain</span>
+                        </a>
+
+                        <!-- Right Knee -->
+                        <a href="knee-pain.html" class="pain-point" style="top: 76%; left: 55%;">
+                            <span class="pulse-ring"></span>
+                            <span class="pain-tooltip">Knee Pain</span>
+                        </a>
                     </div>
                 </div>
+
+                <!-- Back View -->
+                <div class="body-view" data-view="back">
+                    <h3 class="view-label">Back View</h3>
+                    <div class="body-image-wrapper">
+                        <img src="C:/Users/HP/.gemini/antigravity/brain/e2b495fb-5ecf-4d1a-bc47-37cc8aa55a42/body_back_full_clean_1769156302034.png"
+                            alt="Back view of human body" class="body-img">
+
+                        <!-- Neck -->
+                        <a href="neck-pain.html" class="pain-point" style="top: 15%; left: 50%;">
+                            <span class="pulse-ring"></span>
+                            <span class="pain-tooltip">Neck Pain</span>
+                        </a>
+
+                        <!-- Upper Back -->
+                        <a href="back-pain.html" class="pain-point" style="top: 30%; left: 50%;">
+                            <span class="pulse-ring"></span>
+                            <span class="pain-tooltip">Upper Back Pain</span>
+                        </a>
+
+                        <!-- Lower Back -->
+                        <a href="back-pain.html" class="pain-point" style="top: 45%; left: 50%;">
+                            <span class="pulse-ring"></span>
+                            <span class="pain-tooltip">Lower Back Pain</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action for Other Conditions -->
+            <div class="pain-not-found-cta fade-in">
+                <p class="cta-text">Didn't see your pain point here?</p>
+                <a href="conditions.html" class="cta-button">
+                    Explore All Conditions <i class='bx bx-right-arrow-alt'></i>
+                </a>
             </div>
         </div>
     </section>
