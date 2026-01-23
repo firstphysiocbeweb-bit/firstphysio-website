@@ -203,17 +203,40 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('scroll', setActiveNavLink);
 
     // ================================
-    // Practo Button Handler
+    // Practo Widget Button Handler
     // ================================
-    const practoBtn = document.getElementById('practo-btn');
-    if (practoBtn) {
-        practoBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            // Replace with actual Practo URL when available
-            const practoUrl = 'https://www.practo.com/coimbatore/clinic/first-physio-clinic';
-            window.open(practoUrl, '_blank', 'noopener,noreferrer');
+    // All buttons with class 'book-appointment-btn' or 'practo-trigger' 
+    // will trigger the hidden Practo booking widget
+    function initPractoBooking() {
+        // Find all booking buttons that should trigger Practo
+        const bookingButtons = document.querySelectorAll('.book-appointment-btn, .practo-trigger, [data-practo-trigger]');
+
+        bookingButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                triggerPractoWidget();
+            });
         });
     }
+
+    // Function to trigger the Practo widget
+    function triggerPractoWidget() {
+        // Find the Practo widget button (it creates a button inside the widget element)
+        const practoWidget = document.querySelector('practo\\:abs_widget, [widget]');
+        if (practoWidget) {
+            // The Practo widget creates a clickable element inside
+            const practoButton = practoWidget.querySelector('a, button, [role="button"]') || practoWidget;
+            if (practoButton && practoButton.click) {
+                practoButton.click();
+            }
+        }
+    }
+
+    // Initialize Practo booking handlers
+    initPractoBooking();
+
+    // Make triggerPractoWidget available globally for inline onclick handlers
+    window.triggerPractoWidget = triggerPractoWidget;
 
     // ================================
     // Form Handling - Web3Forms Integration

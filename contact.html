@@ -35,8 +35,7 @@
     <header class="header" id="header">
         <nav class="nav container">
             <a href="index.html" class="nav-logo">
-                <span class="logo-first">F<span class="logo-icon">i</span>rst</span>
-                <span class="logo-physio">Phys<span class="logo-icon-o">i</span>o</span>
+                <img src="logo.jpg" alt="First Physio - Redefining Excellence in Physiotherapy">
             </a>
 
             <div class="nav-menu" id="nav-menu">
@@ -80,7 +79,7 @@
                     </svg>
                 </button>
 
-                <a href="#book" class="btn btn-primary nav-btn">
+                <a href="#" class="btn btn-primary nav-btn book-appointment-btn">
                     <span>Book Appointment</span>
                 </a>
                 <div class="nav-toggle" id="nav-toggle">
@@ -315,7 +314,7 @@
                     <h3>Book Online via Practo</h3>
                     <p>Choose an available slot and receive a confirmatory SMS on your mobile within moments of
                         submission.</p>
-                    <a href="#" class="btn btn-primary pulse" id="practo-btn">
+                    <a href="#" class="btn btn-primary pulse book-appointment-btn" id="practo-btn">
                         <span>Book on Practo</span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -391,8 +390,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="index.html" class="nav-logo">
-                        <span class="logo-first">F<span class="logo-icon">i</span>rst</span>
-                        <span class="logo-physio">Phys<span class="logo-icon-o">i</span>o</span>
+                        <img src="logo.jpg" alt="First Physio - Redefining Excellence in Physiotherapy">
                     </a>
                     <p class="footer-tagline">Redefining excellence in Physiotherapy</p>
                     <p class="footer-description">
@@ -494,6 +492,11 @@
     </footer>
 
 
+    <!-- Hidden Practo Booking Widget (triggered by styled buttons) -->
+    <practo:abs_widget widget="8d151b927b32437d"></practo:abs_widget>
+
+    <!-- Practo Booking Widget Script -->
+    <script src="https://www.practo.com/bundles/practopractoapp/js/abs_widget_helper.js"></script>
 
     <!-- Success Modal -->
     <div class="success-modal" id="success-modal">
