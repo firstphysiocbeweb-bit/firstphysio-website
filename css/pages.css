@@ -1127,7 +1127,7 @@
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
-    
+
     .blog-card {
         aspect-ratio: unset;
         min-height: 280px;
@@ -1138,11 +1138,11 @@
     .blog-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .blog-card-content {
         padding: 1.25rem;
     }
-    
+
     .blog-card-content h3 {
         font-size: 1rem;
     }
@@ -1304,11 +1304,11 @@
     .blog-article {
         padding-top: 7rem;
     }
-    
+
     .blog-article-header h1 {
         font-size: 1.6rem;
     }
-    
+
     .blog-cta {
         padding: 1.5rem;
     }
@@ -1715,10 +1715,13 @@
 }
 
 @keyframes hotspotPulse {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scale(1);
         opacity: 0.8;
     }
+
     50% {
         transform: scale(1.5);
         opacity: 0.3;
@@ -1735,17 +1738,17 @@
     .body-map-interactive {
         order: -1;
     }
-    
+
     .body-hotspot {
         width: 24px;
         height: 24px;
     }
-    
+
     .body-hotspot::before {
         width: 10px;
         height: 10px;
     }
-    
+
     .body-hotspot .hotspot-tooltip {
         font-size: 0.75rem;
         padding: 0.4rem 0.75rem;
@@ -2205,4 +2208,120 @@
         display: block;
         margin: 0.5rem 0;
     }
+}
+
+/* ================================
+   Select Dropdown Visibility Fix
+   ================================ */
+.form-group select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394A3B8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+}
+
+.form-group select option {
+    background: var(--bg-dark-secondary);
+    color: var(--text-primary);
+    padding: 0.75rem;
+}
+
+.form-group select optgroup {
+    background: var(--bg-dark);
+    color: var(--primary-orange);
+    font-weight: 600;
+    font-style: normal;
+    padding: 0.5rem;
+}
+
+/* Light theme select dropdown */
+[data-theme="light"] .form-group select option {
+    background: #ffffff;
+    color: #1E293B;
+}
+
+[data-theme="light"] .form-group select optgroup {
+    background: #F1F5F9;
+    color: var(--primary-orange);
+}
+
+/* ================================
+   Success Modal Popup
+   ================================ */
+.success-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    padding: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.success-modal.show {
+    display: flex;
+    opacity: 1;
+}
+
+.success-modal-content {
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-xl);
+    padding: 3rem 2.5rem;
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    animation: modalSlideIn 0.3s ease;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes modalSlideIn {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.success-icon {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(34, 197, 94, 0.1));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: #22c55e;
+}
+
+.success-modal-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+}
+
+.success-modal-content p {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.success-modal-content .btn {
+    min-width: 150px;
 }

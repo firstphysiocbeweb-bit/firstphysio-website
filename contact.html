@@ -62,16 +62,17 @@
                 <!-- Theme Toggle -->
                 <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
                     <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"/>
-                        <line x1="12" y1="1" x2="12" y2="3"/>
-                        <line x1="12" y1="21" x2="12" y2="23"/>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-                        <line x1="1" y1="12" x2="3" y2="12"/>
-                        <line x1="21" y1="12" x2="23" y2="12"/>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5" />
+                        <line x1="12" y1="1" x2="12" y2="3" />
+                        <line x1="12" y1="21" x2="12" y2="23" />
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                        <line x1="1" y1="12" x2="3" y2="12" />
+                        <line x1="21" y1="12" x2="23" y2="12" />
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
                     </svg>
                     <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2">
@@ -218,7 +219,14 @@
                     <h2>Send Us a Message</h2>
                     <p>Have a question? Fill out the form below and we'll get back to you.</p>
 
-                    <form class="contact-form" id="contact-form">
+                    <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit"
+                        method="POST">
+                        <!-- Web3Forms Configuration -->
+                        <input type="hidden" name="access_key" value="3f7087ae-aa68-4300-b982-2da15630e3e8">
+                        <input type="hidden" name="subject" value="New Enquiry from First Physio Website">
+                        <input type="hidden" name="from_name" value="First Physio Website">
+                        <input type="hidden" name="redirect" value="https://web3forms.com/success">
+
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="name">Full Name *</label>
@@ -238,15 +246,25 @@
                         <div class="form-group">
                             <label for="service">Service Interested In</label>
                             <select id="service" name="service">
-                                <option value="">Select a service</option>
-                                <option value="musculoskeletal">Musculoskeletal Therapy</option>
-                                <option value="sports">Sports Rehabilitation</option>
-                                <option value="neuro">Neuro Rehabilitation</option>
-                                <option value="pain">Pain Management</option>
-                                <option value="post-surgery">Post-Surgery Rehab</option>
-                                <option value="senior">Senior Fitness</option>
-                                <option value="corporate">Corporate Solutions</option>
-                                <option value="other">Other</option>
+                                <option value="">Select a service/program</option>
+                                <optgroup label="Programs">
+                                    <option value="pain-management">Pain Management</option>
+                                    <option value="arthritis">Arthritis Management</option>
+                                    <option value="neuro-rehab">Neuro Rehabilitation</option>
+                                    <option value="spine-rehab">Neck & Spinal Rehab</option>
+                                    <option value="post-surgery">Post-Surgery Rehab</option>
+                                    <option value="senior-fitness">Senior Fitness (50+)</option>
+                                    <option value="parkinsons">Parkinson's Program</option>
+                                    <option value="pulmonary">Pulmonary Rehabilitation</option>
+                                    <option value="sports">Sports Injury Rehab</option>
+                                    <option value="corporate">Corporate Solutions</option>
+                                </optgroup>
+                                <optgroup label="Services">
+                                    <option value="protective">Protective Therapy</option>
+                                    <option value="restorative">Restorative Therapy</option>
+                                    <option value="movement">Movement Therapy</option>
+                                </optgroup>
+                                <option value="other">Other / Not Sure</option>
                             </select>
                         </div>
 
@@ -442,7 +460,8 @@
                                 <circle cx="12" cy="10" r="3" />
                             </svg>
                             <a href="https://maps.google.com/?q=First+Physio+Clinic,+25+Srinath+Lake+View,+Alwin+Nagar,+Sungam+Bypass+Road,+Coimbatore+641045"
-                                target="_blank" rel="noopener">First Physio Clinic, 25, Srinath Lake View, Sungam Bypass Road, Coimbatore -
+                                target="_blank" rel="noopener">First Physio Clinic, 25, Srinath Lake View, Sungam Bypass
+                                Road, Coimbatore -
                                 641045</a>
                         </li>
                         <li>
@@ -475,6 +494,22 @@
     </footer>
 
 
+
+    <!-- Success Modal -->
+    <div class="success-modal" id="success-modal">
+        <div class="success-modal-content">
+            <div class="success-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                    <polyline points="22 4 12 14.01 9 11.01" />
+                </svg>
+            </div>
+            <h3>Message Sent Successfully!</h3>
+            <p>Thank you for reaching out. We'll get back to you within 24 hours.</p>
+            <button class="btn btn-primary" onclick="closeSuccessModal()">Got It</button>
+        </div>
+    </div>
 
     <!-- Scripts -->
     <script src="js/main.js"></script>
