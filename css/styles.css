@@ -380,11 +380,31 @@ img {
 /* Logo */
 .nav-logo {
     display: flex;
-    flex-direction: column;
-    line-height: 1.1;
-    font-family: var(--font-heading);
+    align-items: center;
 }
 
+.nav-logo img {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+    transition: transform var(--transition-fast);
+}
+
+.nav-logo:hover img {
+    transform: scale(1.02);
+}
+
+/* Footer logo sizing */
+.footer-brand .nav-logo img {
+    height: 70px;
+}
+
+/* Scrolled header - smaller logo */
+.header.scrolled .nav-logo img {
+    height: 42px;
+}
+
+/* Legacy text logo styles (kept for compatibility) */
 .logo-first {
     font-size: 1.1rem;
     font-weight: 600;
