@@ -1,0 +1,19 @@
+# Documentation files (not needed for production)
+*.docx
+*.doc
+*.md
+*.pdf
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+.vscode/
+*.sublime-*
+
+# Temp files
+*.tmp
+*.bak

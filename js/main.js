@@ -2,8 +2,8 @@
    First Physio - Main JavaScript
    ================================ */
 
-document.addEventListener('DOMContentLoaded', function() {
-    
+document.addEventListener('DOMContentLoaded', function () {
+
     // ================================
     // Mobile Navigation
     // ================================
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const navClose = document.getElementById('nav-close');
     const navMenu = document.getElementById('nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
-    
+
     // Open menu
     if (navToggle) {
         navToggle.addEventListener('click', () => {
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.style.overflow = 'hidden';
         });
     }
-    
+
     // Close menu
     if (navClose) {
         navClose.addEventListener('click', () => {
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.style.overflow = '';
         });
     }
-    
+
     // Close menu when clicking a link
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
@@ -35,11 +35,11 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.style.overflow = '';
         });
     });
-    
+
     // Close menu when clicking outside
     document.addEventListener('click', (e) => {
-        if (navMenu.classList.contains('show-menu') && 
-            !navMenu.contains(e.target) && 
+        if (navMenu.classList.contains('show-menu') &&
+            !navMenu.contains(e.target) &&
             !navToggle.contains(e.target)) {
             navMenu.classList.remove('show-menu');
             document.body.style.overflow = '';
@@ -51,17 +51,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // ================================
     const header = document.getElementById('header');
     let lastScroll = 0;
-    
+
     window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset;
-        
+
         // Add/remove scrolled class
         if (currentScroll > 50) {
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');
         }
-        
+
         lastScroll = currentScroll;
     });
 
@@ -70,18 +70,18 @@ document.addEventListener('DOMContentLoaded', function() {
     // ================================
     const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
-    
+
     // Check for saved theme preference or default to dark
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
         body.setAttribute('data-theme', savedTheme);
     }
-    
+
     if (themeToggle) {
         themeToggle.addEventListener('click', () => {
             const currentTheme = body.getAttribute('data-theme');
             const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-            
+
             body.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
         });
@@ -91,17 +91,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // Smooth Scroll for Anchor Links
     // ================================
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+        anchor.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
-            
+
             if (href !== '#') {
                 e.preventDefault();
                 const target = document.querySelector(href);
-                
+
                 if (target) {
                     const headerHeight = header.offsetHeight;
                     const targetPosition = target.offsetTop - headerHeight - 20;
-                    
+
                     window.scrollTo({
                         top: targetPosition,
                         behavior: 'smooth'
@@ -119,18 +119,18 @@ document.addEventListener('DOMContentLoaded', function() {
         rootMargin: '0px',
         threshold: 0.1
     };
-    
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                
+
                 // Optional: Stop observing after animation
                 // observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
-    
+
     // Observe all elements with animate-on-scroll class
     document.querySelectorAll('.animate-on-scroll').forEach(el => {
         observer.observe(el);
@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function animateCounter(element, target, duration = 2000) {
         let start = 0;
         const increment = target / (duration / 16);
-        
+
         const timer = setInterval(() => {
             start += increment;
             if (start >= target) {
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }, 16);
     }
-    
+
     // Trigger counter animation when stats come into view
     const statsSection = document.querySelector('.hero-stats');
     if (statsSection) {
@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         }, { threshold: 0.5 });
-        
+
         statsObserver.observe(statsSection);
     }
 
@@ -183,12 +183,12 @@ document.addEventListener('DOMContentLoaded', function() {
     function setActiveNavLink() {
         const sections = document.querySelectorAll('section[id]');
         const scrollPos = window.pageYOffset + 100;
-        
+
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.offsetHeight;
             const sectionId = section.getAttribute('id');
-            
+
             if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
                 navLinks.forEach(link => {
                     link.classList.remove('active');
@@ -199,21 +199,44 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-    
+
     window.addEventListener('scroll', setActiveNavLink);
 
     // ================================
-    // Practo Button Handler
+    // Practo Widget Button Handler
     // ================================
-    const practoBtn = document.getElementById('practo-btn');
-    if (practoBtn) {
-        practoBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            // Replace with actual Practo URL when available
-            const practoUrl = 'https://www.practo.com/coimbatore/clinic/first-physio-clinic';
-            window.open(practoUrl, '_blank', 'noopener,noreferrer');
+    // All buttons with class 'book-appointment-btn' or 'practo-trigger' 
+    // will trigger the hidden Practo booking widget
+    function initPractoBooking() {
+        // Find all booking buttons that should trigger Practo
+        const bookingButtons = document.querySelectorAll('.book-appointment-btn, .practo-trigger, [data-practo-trigger]');
+
+        bookingButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                triggerPractoWidget();
+            });
         });
     }
+
+    // Function to trigger the Practo widget
+    function triggerPractoWidget() {
+        // Find the Practo widget button (it creates a button inside the widget element)
+        const practoWidget = document.querySelector('practo\\:abs_widget, [widget]');
+        if (practoWidget) {
+            // The Practo widget creates a clickable element inside
+            const practoButton = practoWidget.querySelector('a, button, [role="button"]') || practoWidget;
+            if (practoButton && practoButton.click) {
+                practoButton.click();
+            }
+        }
+    }
+
+    // Initialize Practo booking handlers
+    initPractoBooking();
+
+    // Make triggerPractoWidget available globally for inline onclick handlers
+    window.triggerPractoWidget = triggerPractoWidget;
 
     // ================================
     // Form Handling (for future contact form)
@@ -222,33 +245,33 @@ document.addEventListener('DOMContentLoaded', function() {
     if (contactForm) {
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
+
             const formData = new FormData(contactForm);
             const submitBtn = contactForm.querySelector('button[type="submit"]');
             const originalText = submitBtn.textContent;
-            
+
             // Show loading state
             submitBtn.textContent = 'Sending...';
             submitBtn.disabled = true;
-            
+
             try {
                 // Replace with actual form submission logic
                 // Example: EmailJS or Formspree
                 await new Promise(resolve => setTimeout(resolve, 1500));
-                
+
                 // Success
                 submitBtn.textContent = 'Sent!';
                 contactForm.reset();
-                
+
                 setTimeout(() => {
                     submitBtn.textContent = originalText;
                     submitBtn.disabled = false;
                 }, 2000);
-                
+
             } catch (error) {
                 console.error('Form submission error:', error);
                 submitBtn.textContent = 'Error. Try again.';
-                
+
                 setTimeout(() => {
                     submitBtn.textContent = originalText;
                     submitBtn.disabled = false;
@@ -261,17 +284,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // Parallax Effect for Orbs
     // ================================
     const orbs = document.querySelectorAll('.orb');
-    
+
     if (window.innerWidth > 768) {
         window.addEventListener('mousemove', (e) => {
             const mouseX = e.clientX / window.innerWidth;
             const mouseY = e.clientY / window.innerHeight;
-            
+
             orbs.forEach((orb, index) => {
                 const speed = (index + 1) * 10;
                 const x = (mouseX - 0.5) * speed;
                 const y = (mouseY - 0.5) * speed;
-                
+
                 orb.style.transform = `translate(${x}px, ${y}px)`;
             });
         });
@@ -295,7 +318,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // ================================
     if ('IntersectionObserver' in window) {
         const lazyImages = document.querySelectorAll('img[data-src]');
-        
+
         const imageObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -306,7 +329,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
-        
+
         lazyImages.forEach(img => imageObserver.observe(img));
     }
 
@@ -359,7 +382,7 @@ function debounce(func, wait = 20) {
 // Throttle function for scroll events
 function throttle(func, limit = 100) {
     let inThrottle;
-    return function(...args) {
+    return function (...args) {
         if (!inThrottle) {
             func.apply(this, args);
             inThrottle = true;
