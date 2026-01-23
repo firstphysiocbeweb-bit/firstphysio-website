@@ -239,7 +239,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.triggerPractoWidget = triggerPractoWidget;
 
     // ================================
-    // Form Handling (for future contact form)
+    // Form Handling - Web3Forms Integration
     // ================================
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
@@ -248,34 +248,78 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const formData = new FormData(contactForm);
             const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
+            const originalHTML = submitBtn.innerHTML;
 
             // Show loading state
-            submitBtn.textContent = 'Sending...';
+            submitBtn.innerHTML = '<span>Sending...</span>';
             submitBtn.disabled = true;
 
             try {
-                // Replace with actual form submission logic
-                // Example: EmailJS or Formspree
-                await new Promise(resolve => setTimeout(resolve, 1500));
+                // Submit to Web3Forms API
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                });
 
-                // Success
-                submitBtn.textContent = 'Sent!';
-                contactForm.reset();
+                const result = await response.json();
 
-                setTimeout(() => {
-                    submitBtn.textContent = originalText;
+                if (result.success) {
+                    // Success - Show modal popup
+                    contactForm.reset();
+                    submitBtn.innerHTML = originalHTML;
                     submitBtn.disabled = false;
-                }, 2000);
+
+                    // Show success modal
+                    showSuccessModal();
+                } else {
+                    throw new Error(result.message || 'Submission failed');
+                }
 
             } catch (error) {
                 console.error('Form submission error:', error);
-                submitBtn.textContent = 'Error. Try again.';
+                submitBtn.innerHTML = '<span>Error. Try again.</span>';
 
                 setTimeout(() => {
-                    submitBtn.textContent = originalText;
+                    submitBtn.innerHTML = originalHTML;
                     submitBtn.disabled = false;
-                }, 2000);
+                }, 3000);
+            }
+        });
+    }
+
+    // ================================
+    // Success Modal Functions
+    // ================================
+    window.showSuccessModal = function () {
+        const modal = document.getElementById('success-modal');
+        if (modal) {
+            modal.style.display = 'flex';
+            // Trigger reflow for animation
+            modal.offsetHeight;
+            modal.classList.add('show');
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
+        }
+    };
+
+    window.closeSuccessModal = function () {
+        const modal = document.getElementById('success-modal');
+        if (modal) {
+            modal.classList.remove('show');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+            // Restore body scroll
+            document.body.style.overflow = '';
+        }
+    };
+
+    // Close modal on backdrop click
+    const successModal = document.getElementById('success-modal');
+    if (successModal) {
+        successModal.addEventListener('click', (e) => {
+            if (e.target === successModal) {
+                closeSuccessModal();
             }
         });
     }
