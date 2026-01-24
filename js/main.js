@@ -403,6 +403,55 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // ================================
+    // Font Size Controls for Blog
+    // ================================
+    function initFontSizeControls() {
+        const decreaseBtn = document.getElementById('decrease-font');
+        const resetBtn = document.getElementById('reset-font');
+        const increaseBtn = document.getElementById('increase-font');
+        const blogContent = document.querySelector('.blog-article-content');
+        const fontBtns = document.querySelectorAll('.font-btn');
+
+        if (!blogContent || !decreaseBtn) return;
+
+        const sizes = {
+            small: '1rem',
+            medium: '1.15rem',
+            large: '1.5rem'
+        };
+
+        function setFontSize(size, activeBtn) {
+            // Apply size using CSS variable for better performance and consistency
+            blogContent.style.setProperty('--blog-font-size', sizes[size]);
+
+            fontBtns.forEach(btn => btn.classList.remove('active'));
+            if (activeBtn) activeBtn.classList.add('active');
+
+            // Save preference
+            localStorage.setItem('blogFontSize', size);
+        }
+
+        decreaseBtn.addEventListener('click', () => setFontSize('small', decreaseBtn));
+        resetBtn.addEventListener('click', () => setFontSize('medium', resetBtn));
+        increaseBtn.addEventListener('click', () => setFontSize('large', increaseBtn));
+
+        // Load saved preference
+        const savedSize = localStorage.getItem('blogFontSize');
+        if (savedSize) {
+            const btnMap = {
+                small: decreaseBtn,
+                medium: resetBtn,
+                large: increaseBtn
+            };
+            if (btnMap[savedSize]) {
+                setFontSize(savedSize, btnMap[savedSize]);
+            }
+        }
+    }
+
+    initFontSizeControls();
+
     console.log('First Physio website initialized successfully!');
 });
 
