@@ -487,7 +487,9 @@
 
 /* Promise Card */
 .promise-card {
-    background: var(--gradient-brand);
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: var(--shadow-glow-blue);
     border-radius: var(--radius-xl);
     padding: 4rem;
     text-align: center;
@@ -507,9 +509,6 @@
 
 .promise-card .btn {
     margin-top: 1.5rem;
-    background: var(--text-primary);
-    color: var(--bg-dark);
-    box-shadow: none;
 }
 
 .promise-card .btn:hover {
