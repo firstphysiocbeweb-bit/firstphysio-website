@@ -363,18 +363,28 @@
     padding: 2rem;
     background: rgba(255, 255, 255, 0.02);
     border-radius: var(--radius-lg);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .logo-display .nav-logo.large {
-    transform: scale(1.5);
-    margin-bottom: 2rem;
+    display: block;
+    margin-bottom: 1.5rem;
+}
+
+.logo-display .nav-logo.large img {
+    max-width: 180px;
+    height: auto;
 }
 
 .logo-tagline {
     color: var(--primary-orange);
     font-style: italic;
     font-size: 1rem;
-    margin-top: 1rem;
+    margin-top: 0;
 }
 
 @media screen and (max-width: 768px) {
@@ -383,8 +393,8 @@
         gap: 2rem;
     }
 
-    .logo-display .nav-logo.large {
-        transform: scale(1.2);
+    .logo-display .nav-logo.large img {
+        max-width: 150px;
     }
 }
 
@@ -2355,4 +2365,58 @@
 
 .success-modal-content .btn {
     min-width: 150px;
+}
+
+/* ================================
+   Condition Page Heros
+   ================================ */
+.condition-hero-bg {
+    position: relative;
+    background-color: var(--bg-dark);
+    background-size: auto 100%;
+    background-position: right center;
+    background-repeat: no-repeat;
+    /* Default gradient overlay */
+    background-image:
+        linear-gradient(to right, #0a192f 45%, rgba(10, 25, 47, 0.7) 65%, rgba(10, 25, 47, 0.2)),
+        var(--hero-bg-image);
+}
+
+.back-pain-hero {
+    --hero-bg-image: url('../images/back-pain-bg.png');
+}
+
+.neck-pain-hero {
+    --hero-bg-image: url('../images/neck-pain-bg.png');
+}
+
+.shoulder-pain-hero {
+    --hero-bg-image: url('../images/shoulder-pain-bg.png');
+}
+
+.knee-pain-hero {
+    --hero-bg-image: url('../images/knee-pain-bg.png');
+}
+
+.hip-pain-hero {
+    --hero-bg-image: url('../images/hip-pain-bg.png');
+}
+
+.sports-injuries-hero {
+    --hero-bg-image: url('../images/sports-injuries-bg.png');
+}
+
+.page-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 650px;
+}
+
+@media screen and (max-width: 768px) {
+    .condition-hero-bg {
+        background-position: 80% center;
+        background-image:
+            linear-gradient(to right, #0a192f 60%, rgba(10, 25, 47, 0.8) 80%, rgba(10, 25, 47, 0.4)),
+            var(--hero-bg-image);
+    }
 }
