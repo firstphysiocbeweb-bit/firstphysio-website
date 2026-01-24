@@ -349,28 +349,97 @@
         </div>
     </section>
 
-    <!-- Body Map Section -->
-    <section class="body-map section">
+    <!-- Interactive Body Pain Point Diagram -->
+    <section class="body-model-section section" id="body-model">
         <div class="container">
-            <div class="body-map-content fade-in">
-                <div class="body-map-text">
-                    <span class="section-subtitle">Pain Guide</span>
-                    <h2 class="section-title">Where Does It <span class="text-gradient">Hurt?</span></h2>
-                    <p>
-                        Pain can affect any part of your body. Whether it's your neck, back, shoulder,
-                        hip, knee, or ankle - we have specialized treatments designed for each area.
-                    </p>
-                    <p>
-                        Don't let pain control your life. Our expert physiotherapist will assess your
-                        condition and create a personalized treatment plan to get you back to doing what you love.
-                    </p>
-                    <a href="contact.html#book" class="btn btn-primary">
-                        <span>Book Assessment</span>
-                    </a>
+            <div class="section-header fade-in">
+                <span class="section-subtitle">Where Does It Hurt?</span>
+                <h2 class="section-title">Click on Your <span class="text-gradient">Pain Point</span></h2>
+                <p class="section-description">Select an area on the body diagram below to learn about our specialized
+                    treatment for that condition.</p>
+            </div>
+
+            <!-- Side-by-Side Body Diagram -->
+            <div class="body-diagram-container fade-in">
+                <!-- Front View -->
+                <div class="body-view" data-view="front">
+                    <h3 class="view-label">Front View</h3>
+                    <div class="body-image-wrapper">
+                        <img src="C:/Users/HP/.gemini/antigravity/brain/e2b495fb-5ecf-4d1a-bc47-37cc8aa55a42/body_front_full_clean_1769156285340.png"
+                            alt="Front view of human body" class="body-img">
+
+                        <!-- Left Shoulder -->
+                        <a href="shoulder-pain.html" class="pain-point" style="top: 22%; left: 40%;">
+                            <span class="pulse-ring"></span>
+                            <span class="pain-tooltip">Shoulder Pain</span>
+                        </a>
+
+                        <!-- Right Shoulder -->
+                        <a href="shoulder-pain.html" class="pain-point" style="top: 22%; left: 60%;">
+                            <span class="pulse-ring"></span>
+                            <span class="pain-tooltip">Shoulder Pain</span>
+                        </a>
+
+                        <!-- Left Elbow -->
+                        <a href="sports-injuries.html" class="pain-point" style="top: 38%; left: 34%;">
+                            <span class="pulse-ring"></span>
+                            <span class="pain-tooltip">Elbow Pain</span>
+                        </a>
+
+                        <!-- Right Elbow -->
+                        <a href="sports-injuries.html" class="pain-point" style="top: 38%; left: 66%;">
+                            <span class="pulse-ring"></span>
+                            <span class="pain-tooltip">Elbow Pain</span>
+                        </a>
+
+                        <!-- Left Knee -->
+                        <a href="knee-pain.html" class="pain-point" style="top: 76%; left: 45%;">
+                            <span class="pulse-ring"></span>
+                            <span class="pain-tooltip">Knee Pain</span>
+                        </a>
+
+                        <!-- Right Knee -->
+                        <a href="knee-pain.html" class="pain-point" style="top: 76%; left: 55%;">
+                            <span class="pulse-ring"></span>
+                            <span class="pain-tooltip">Knee Pain</span>
+                        </a>
+                    </div>
                 </div>
-                <div class="body-map-image">
-                    <img src="images/body-model.jpg" alt="Pain points on human body" loading="lazy">
+
+                <!-- Back View -->
+                <div class="body-view" data-view="back">
+                    <h3 class="view-label">Back View</h3>
+                    <div class="body-image-wrapper">
+                        <img src="C:/Users/HP/.gemini/antigravity/brain/e2b495fb-5ecf-4d1a-bc47-37cc8aa55a42/body_back_full_clean_1769156302034.png"
+                            alt="Back view of human body" class="body-img">
+
+                        <!-- Neck -->
+                        <a href="neck-pain.html" class="pain-point" style="top: 15%; left: 50%;">
+                            <span class="pulse-ring"></span>
+                            <span class="pain-tooltip">Neck Pain</span>
+                        </a>
+
+                        <!-- Upper Back -->
+                        <a href="back-pain.html" class="pain-point" style="top: 30%; left: 50%;">
+                            <span class="pulse-ring"></span>
+                            <span class="pain-tooltip">Upper Back Pain</span>
+                        </a>
+
+                        <!-- Lower Back -->
+                        <a href="back-pain.html" class="pain-point" style="top: 45%; left: 50%;">
+                            <span class="pulse-ring"></span>
+                            <span class="pain-tooltip">Lower Back Pain</span>
+                        </a>
+                    </div>
                 </div>
+            </div>
+
+            <!-- Call to Action for Other Conditions -->
+            <div class="pain-not-found-cta fade-in">
+                <p class="cta-text">Didn't see your pain point here?</p>
+                <a href="contact.html" class="cta-button">
+                    Contact Us <i class='bx bx-right-arrow-alt'></i>
+                </a>
             </div>
         </div>
     </section>
@@ -470,11 +539,12 @@
                                 <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
                             </svg>
                         </a>
-                        <a href="https://twitter.com/firstphysio1" target="_blank" rel="noopener" aria-label="Twitter">
+                        <a href="https://x.com/firstphysio1" target="_blank" rel="noopener"
+                            aria-label="X (formerly Twitter)">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2">
+                                fill="currentColor" stroke="none">
                                 <path
-                                    d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
+                                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                             </svg>
                         </a>
                         <a href="mailto:firstphysios@gmail.com" aria-label="Email">

@@ -71,6 +71,20 @@
     margin-bottom: 1rem;
 }
 
+.about-doctor-image {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: var(--radius-md);
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.about-doctor-image:hover {
+    transform: scale(1.02);
+}
+
 .image-caption {
     font-size: 0.9rem;
     color: var(--text-muted);
@@ -152,6 +166,56 @@
     padding: 2.5rem;
     position: relative;
     overflow: hidden;
+}
+
+
+
+
+
+.font-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    padding: 0.75rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.font-controls-label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.font-btn {
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+    min-width: 40px;
+    height: 40px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-weight: 600;
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.font-btn:hover {
+    border-color: var(--primary-orange);
+    color: var(--primary-orange);
+}
+
+.font-btn.active {
+    background: var(--primary-orange);
+    border-color: var(--primary-orange);
+    color: white;
+}
+
+[data-theme="light"] .font-btn {
+    background: var(--bg-dark-secondary);
+    border-color: rgba(0, 0, 0, 0.1);
 }
 
 .mission-card::before {
@@ -349,18 +413,28 @@
     padding: 2rem;
     background: rgba(255, 255, 255, 0.02);
     border-radius: var(--radius-lg);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .logo-display .nav-logo.large {
-    transform: scale(1.5);
-    margin-bottom: 2rem;
+    display: block;
+    margin-bottom: 1.5rem;
+}
+
+.logo-display .nav-logo.large img {
+    max-width: 180px;
+    height: auto;
 }
 
 .logo-tagline {
     color: var(--primary-orange);
     font-style: italic;
     font-size: 1rem;
-    margin-top: 1rem;
+    margin-top: 0;
 }
 
 @media screen and (max-width: 768px) {
@@ -369,8 +443,8 @@
         gap: 2rem;
     }
 
-    .logo-display .nav-logo.large {
-        transform: scale(1.2);
+    .logo-display .nav-logo.large img {
+        max-width: 150px;
     }
 }
 
@@ -397,6 +471,22 @@
     align-items: center;
     justify-content: center;
     color: var(--text-muted);
+}
+
+.founder-doctor-image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: 50%;
+    border: 4px solid var(--primary-orange);
+    box-shadow: 0 8px 32px rgba(232, 93, 4, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.founder-doctor-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 40px rgba(232, 93, 4, 0.4);
 }
 
 .founder-info h3 {
@@ -435,7 +525,8 @@
         text-align: center;
     }
 
-    .founder-image-placeholder {
+    .founder-image-placeholder,
+    .founder-doctor-image {
         margin: 0 auto;
     }
 
@@ -446,7 +537,9 @@
 
 /* Promise Card */
 .promise-card {
-    background: var(--gradient-brand);
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: var(--shadow-glow-blue);
     border-radius: var(--radius-xl);
     padding: 4rem;
     text-align: center;
@@ -466,9 +559,6 @@
 
 .promise-card .btn {
     margin-top: 1.5rem;
-    background: var(--text-primary);
-    color: var(--bg-dark);
-    box-shadow: none;
 }
 
 .promise-card .btn:hover {
@@ -1036,6 +1126,7 @@
     line-height: 1.6;
     display: -webkit-box;
     -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
     flex-grow: 1;
@@ -1078,6 +1169,7 @@
 .blog-card.expanded .blog-excerpt {
     display: block;
     -webkit-line-clamp: unset;
+    line-clamp: unset;
 }
 
 .blog-full-content-card {
@@ -1202,19 +1294,25 @@
 
 .blog-article-content {
     max-width: 800px;
+    margin: 0 auto;
+    --blog-font-size: 1.15rem;
+    font-size: var(--blog-font-size);
+    transition: font-size 0.3s ease;
 }
 
 .blog-article-content .lead {
-    font-size: 1.15rem;
+    font-size: calc(var(--blog-font-size) + 0.1rem);
     color: var(--text-secondary);
     line-height: 1.7;
     margin-bottom: 1.5rem;
+    transition: font-size 0.3s ease;
 }
 
 .blog-article-content p {
     margin-bottom: 1.25rem;
     line-height: 1.8;
-    font-size: 1rem;
+    font-size: var(--blog-font-size);
+    transition: font-size 0.3s ease;
 }
 
 .blog-article-content h2 {
@@ -1239,7 +1337,8 @@
 .blog-article-content li {
     margin-bottom: 0.75rem;
     line-height: 1.7;
-    font-size: 0.95rem;
+    font-size: var(--blog-font-size);
+    transition: font-size 0.3s ease;
 }
 
 .blog-share {
@@ -2324,4 +2423,58 @@
 
 .success-modal-content .btn {
     min-width: 150px;
+}
+
+/* ================================
+   Condition Page Heros
+   ================================ */
+.condition-hero-bg {
+    position: relative;
+    background-color: var(--bg-dark);
+    background-size: auto 100%;
+    background-position: right center;
+    background-repeat: no-repeat;
+    /* Default gradient overlay */
+    background-image:
+        linear-gradient(to right, #0a192f 45%, rgba(10, 25, 47, 0.7) 65%, rgba(10, 25, 47, 0.2)),
+        var(--hero-bg-image);
+}
+
+.back-pain-hero {
+    --hero-bg-image: url('../images/back-pain-bg.png');
+}
+
+.neck-pain-hero {
+    --hero-bg-image: url('../images/neck-pain-bg.png');
+}
+
+.shoulder-pain-hero {
+    --hero-bg-image: url('../images/shoulder-pain-bg.png');
+}
+
+.knee-pain-hero {
+    --hero-bg-image: url('../images/knee-pain-bg.png');
+}
+
+.hip-pain-hero {
+    --hero-bg-image: url('../images/hip-pain-bg.png');
+}
+
+.sports-injuries-hero {
+    --hero-bg-image: url('../images/sports-injuries-bg.png');
+}
+
+.page-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 650px;
+}
+
+@media screen and (max-width: 768px) {
+    .condition-hero-bg {
+        background-position: 80% center;
+        background-image:
+            linear-gradient(to right, #0a192f 60%, rgba(10, 25, 47, 0.8) 80%, rgba(10, 25, 47, 0.4)),
+            var(--hero-bg-image);
+    }
 }
