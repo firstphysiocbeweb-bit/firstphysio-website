@@ -566,6 +566,15 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
+/* Light mode fix for promise card */
+[data-theme="light"] .promise-card p {
+    color: var(--text-secondary);
+}
+
+[data-theme="light"] .promise-card h2 {
+    color: var(--text-primary);
+}
+
 /* ================================
    Contact Page
    ================================ */
@@ -2439,6 +2448,19 @@
         linear-gradient(to right, #0a192f 45%, rgba(10, 25, 47, 0.7) 65%, rgba(10, 25, 47, 0.2)),
         var(--hero-bg-image);
 }
+
+/* Force white text on dark hero backgrounds (even in light mode) */
+.condition-hero-bg h1,
+.condition-hero-bg h2,
+.condition-hero-bg p,
+.condition-hero-bg .page-hero-title,
+.condition-hero-bg .page-hero-description,
+.condition-hero-bg .back-link,
+.condition-hero-bg .breadcrumb {
+    color: #ffffff !important;
+}
+
+
 
 .back-pain-hero {
     --hero-bg-image: url('../images/back-pain-bg.png');
