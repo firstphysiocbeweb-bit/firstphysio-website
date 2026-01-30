@@ -452,6 +452,99 @@ document.addEventListener('DOMContentLoaded', function () {
 
     initFontSizeControls();
 
+    // ================================
+    // Testimonials Carousel
+    // ================================
+    const testimonialsPrev = document.getElementById('testimonials-prev');
+    const testimonialsNext = document.getElementById('testimonials-next');
+    const testimonialsDots = document.getElementById('testimonials-dots');
+    const testimonialsContainer = document.getElementById('testimonials-container');
+
+    if (testimonialsPrev && testimonialsNext && testimonialsContainer) {
+        let currentPage = 1;
+        const totalPages = testimonialsDots ? testimonialsDots.querySelectorAll('.dot').length : 3;
+
+        function updateCarousel() {
+            // Update pages visibility
+            const pages = testimonialsContainer.querySelectorAll('.testimonials-page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+                if (parseInt(page.dataset.page) === currentPage) {
+                    page.classList.add('active');
+                }
+            });
+
+            // Update dots
+            if (testimonialsDots) {
+                const dots = testimonialsDots.querySelectorAll('.dot');
+                dots.forEach(dot => {
+                    dot.classList.remove('active');
+                    if (parseInt(dot.dataset.page) === currentPage) {
+                        dot.classList.add('active');
+                    }
+                });
+            }
+
+            // Update arrow states
+            testimonialsPrev.disabled = currentPage === 1;
+            testimonialsNext.disabled = currentPage === totalPages;
+        }
+
+        testimonialsPrev.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                updateCarousel();
+            }
+        });
+
+        testimonialsNext.addEventListener('click', () => {
+            if (currentPage < totalPages) {
+                currentPage++;
+                updateCarousel();
+            }
+        });
+
+        // Dot navigation
+        if (testimonialsDots) {
+            testimonialsDots.querySelectorAll('.dot').forEach(dot => {
+                dot.addEventListener('click', () => {
+                    currentPage = parseInt(dot.dataset.page);
+                    updateCarousel();
+                });
+            });
+        }
+
+        // Initial state
+        updateCarousel();
+    }
+
+    // ================================
+    // Service Read More Toggle
+    // ================================
+    function initServiceReadMore() {
+        const readMoreBtns = document.querySelectorAll('.service-read-more-btn');
+
+        readMoreBtns.forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                const card = this.closest('.category-service-card');
+                const btnText = this.querySelector('.btn-text');
+
+                if (card) {
+                    card.classList.toggle('expanded');
+
+                    if (card.classList.contains('expanded')) {
+                        btnText.textContent = 'Read Less';
+                    } else {
+                        btnText.textContent = 'Read More';
+                    }
+                }
+            });
+        });
+    }
+
+    initServiceReadMore();
+
     console.log('First Physio website initialized successfully!');
 });
 
