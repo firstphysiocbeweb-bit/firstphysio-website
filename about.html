@@ -50,16 +50,18 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Physiotherapy",
+      "@type": "MedicalBusiness",
       "name": "First Physio",
       "image": "https://firstphysio.in/logo.jpg",
-      "@id": "https://firstphysio.in",
+      "@id": "https://firstphysio.in/#organization",
       "url": "https://firstphysio.in/about.html",
       "telephone": "+918870140001",
+      "priceRange": "$$",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "25, Srinath Lake View, Sungam Bypass Road",
+        "streetAddress": "25, Srinath Lake View, Alwin Nagar, Sungam Bypass Road",
         "addressLocality": "Coimbatore",
+        "addressRegion": "Tamil Nadu",
         "postalCode": "641045",
         "addressCountry": "IN"
       },
@@ -68,19 +70,32 @@
         "latitude": 10.99,
         "longitude": 76.96
       },
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday"
-        ],
-        "opens": "08:00",
-        "closes": "20:00"
+      "founder": {
+        "@type": "Person",
+        "name": "Dr. Augustine Joseph",
+        "jobTitle": "Clinical Director & Chief Physiotherapist"
       },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "opens": "08:00",
+          "closes": "20:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Sunday",
+          "opens": "08:00",
+          "closes": "20:00"
+        }
+      ],
       "sameAs": [
         "https://www.facebook.com/ourfirstphysio",
         "https://www.instagram.com/clinicfirstphysio",
