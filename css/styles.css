@@ -2317,6 +2317,27 @@ practo\:abs_widget:active {
         width: 20px;
         height: 20px;
     }
+
+    /* Reduce orb blur and size on mobile for performance */
+    .orb {
+        filter: blur(40px);
+        animation: none;
+    }
+
+    .orb-1 {
+        width: 300px;
+        height: 300px;
+    }
+
+    .orb-2 {
+        width: 200px;
+        height: 200px;
+    }
+
+    .orb-3 {
+        width: 150px;
+        height: 150px;
+    }
 }
 
 /* ================================
