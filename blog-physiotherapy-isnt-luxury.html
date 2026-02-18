@@ -107,6 +107,32 @@
       ]
     }
     </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://firstphysio.in/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Blog",
+                "item": "https://firstphysio.in/blog.html"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Physiotherapy Isn\u2019t a Luxury",
+                "item": "https://firstphysio.in/blog-physiotherapy-isnt-luxury.html"
+            }
+        ]
+    }
+    </script>
 </head>
 
 <body>
@@ -179,6 +205,17 @@
             </div>
         </nav>
     </header>
+
+    <!-- Breadcrumb Navigation -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <div class="container">
+            <ol class="breadcrumb-list">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="blog.html">Blog</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Physiotherapy Isn’t a Luxury</li>
+            </ol>
+        </div>
+    </nav>
 
     <!-- Blog Article -->
     <article class="blog-article section">

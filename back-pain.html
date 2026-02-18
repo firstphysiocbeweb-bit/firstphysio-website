@@ -107,6 +107,32 @@
       ]
     }
     </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://firstphysio.in/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Conditions",
+                "item": "https://firstphysio.in/conditions.html"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Back Pain",
+                "item": "https://firstphysio.in/back-pain.html"
+            }
+        ]
+    }
+    </script>
 </head>
 
 <body>
@@ -180,6 +206,17 @@
             </div>
         </nav>
     </header>
+
+    <!-- Breadcrumb Navigation -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <div class="container">
+            <ol class="breadcrumb-list">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="conditions.html">Conditions</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Back Pain</li>
+            </ol>
+        </div>
+    </nav>
 
     <!-- Page Hero -->
     <section class="page-hero condition-hero-bg back-pain-hero">
