@@ -1307,8 +1307,8 @@ img {
 }
 
 .footer-social a {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     background: rgba(255, 255, 255, 0.05);
     border-radius: var(--radius-sm);
     display: flex;
@@ -1782,8 +1782,8 @@ practo\:abs_widget:active {
 /* Pain Point Hotspots */
 .pain-point {
     position: absolute;
-    width: 30px;
-    height: 30px;
+    width: 44px;
+    height: 44px;
     transform: translate(-50%, -50%);
     cursor: pointer;
     z-index: 10;
@@ -1924,8 +1924,8 @@ practo\:abs_widget:active {
     }
 
     .pain-point {
-        width: 24px;
-        height: 24px;
+        width: 44px;
+        height: 44px;
     }
 
     .pain-point::before {
@@ -2272,8 +2272,10 @@ practo\:abs_widget:active {
 }
 
 .testimonials-dots .dot {
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
+    padding: 16px;
+    background-clip: content-box;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.2);
     border: none;
