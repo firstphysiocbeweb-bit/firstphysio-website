@@ -5,6 +5,16 @@
 document.addEventListener('DOMContentLoaded', function () {
 
     // ================================
+    // Utility: Safe localStorage access
+    // ================================
+    function safeGetItem(key) {
+        try { return localStorage.getItem(key); } catch (e) { return null; }
+    }
+    function safeSetItem(key, value) {
+        try { localStorage.setItem(key, value); } catch (e) { /* private browsing */ }
+    }
+
+    // ================================
     // Mobile Navigation
     // ================================
     const navToggle = document.getElementById('nav-toggle');
@@ -13,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const navLinks = document.querySelectorAll('.nav-link');
 
     // Open menu
-    if (navToggle) {
+    if (navToggle && navMenu) {
         navToggle.addEventListener('click', () => {
             navMenu.classList.add('show-menu');
             document.body.style.overflow = 'hidden';
@@ -21,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Close menu
-    if (navClose) {
+    if (navClose && navMenu) {
         navClose.addEventListener('click', () => {
             navMenu.classList.remove('show-menu');
             document.body.style.overflow = '';
@@ -29,16 +39,19 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Close menu when clicking a link
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            navMenu.classList.remove('show-menu');
-            document.body.style.overflow = '';
+    if (navMenu) {
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('show-menu');
+                document.body.style.overflow = '';
+            });
         });
-    });
+    }
 
     // Close menu when clicking outside
     document.addEventListener('click', (e) => {
-        if (navMenu.classList.contains('show-menu') &&
+        if (navMenu && navToggle &&
+            navMenu.classList.contains('show-menu') &&
             !navMenu.contains(e.target) &&
             !navToggle.contains(e.target)) {
             navMenu.classList.remove('show-menu');
@@ -50,9 +63,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // Header Scroll Effect
     // ================================
     const header = document.getElementById('header');
-    let lastScroll = 0;
 
-    window.addEventListener('scroll', () => {
+    // Combined scroll handler (header effect + active nav)
+    function onScroll() {
+        if (!header) return;
         const currentScroll = window.pageYOffset;
 
         // Add/remove scrolled class
@@ -62,8 +76,25 @@ document.addEventListener('DOMContentLoaded', function () {
             header.classList.remove('scrolled');
         }
 
-        lastScroll = currentScroll;
-    });
+        // Active nav link highlighting
+        const sections = document.querySelectorAll('section[id]');
+        const scrollPos = currentScroll + 100;
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute('id');
+            if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${sectionId}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
 
     // ================================
     // Theme Toggle (Light/Dark Mode)
@@ -72,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const body = document.body;
 
     // Check for saved theme preference or default to dark
-    const savedTheme = localStorage.getItem('theme');
+    const savedTheme = safeGetItem('theme');
     if (savedTheme) {
         body.setAttribute('data-theme', savedTheme);
     }
@@ -83,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const newTheme = currentTheme === 'light' ? 'dark' : 'light';
 
             body.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
+            safeSetItem('theme', newTheme);
         });
     }
 
@@ -98,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 e.preventDefault();
                 const target = document.querySelector(href);
 
-                if (target) {
+                if (target && header) {
                     const headerHeight = header.offsetHeight;
                     const targetPosition = target.offsetTop - headerHeight - 20;
 
@@ -114,27 +145,27 @@ document.addEventListener('DOMContentLoaded', function () {
     // ================================
     // Intersection Observer for Animations
     // ================================
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-    };
+    if ('IntersectionObserver' in window) {
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
 
-                // Optional: Stop observing after animation
-                // observer.unobserve(entry.target);
-            }
+        // Observe all elements with animate-on-scroll class
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
         });
-    }, observerOptions);
-
-    // Observe all elements with animate-on-scroll class
-    document.querySelectorAll('.animate-on-scroll').forEach(el => {
-        observer.observe(el);
-    });
+    }
 
     // ================================
     // Counter Animation for Stats
@@ -156,7 +187,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Trigger counter animation when stats come into view
     const statsSection = document.querySelector('.hero-stats');
-    if (statsSection) {
+    if (statsSection && 'IntersectionObserver' in window) {
         const statsObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -178,31 +209,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // ================================
-    // Active Navigation Link
-    // ================================
-    function setActiveNavLink() {
-        const sections = document.querySelectorAll('section[id]');
-        const scrollPos = window.pageYOffset + 100;
-
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            const sectionId = section.getAttribute('id');
-
-            if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${sectionId}`) {
-                        link.classList.add('active');
-                    }
-                });
-            }
-        });
-    }
-
-    window.addEventListener('scroll', setActiveNavLink);
-
-    // ================================
     // Practo Widget Button Handler
     // ================================
     // All buttons with class 'book-appointment-btn' or 'practo-trigger' 
@@ -220,16 +226,19 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Function to trigger the Practo widget
+    const PRACTO_PROFILE_URL = 'https://www.practo.com/coimbatore/doctor/augustine-joseph-physiotherapist';
+
     function triggerPractoWidget() {
-        // Find the Practo widget button (it creates a button inside the widget element)
         const practoWidget = document.querySelector('practo\\:abs_widget, [widget]');
         if (practoWidget) {
-            // The Practo widget creates a clickable element inside
             const practoButton = practoWidget.querySelector('a, button, [role="button"]') || practoWidget;
             if (practoButton && practoButton.click) {
                 practoButton.click();
+                return;
             }
         }
+        // Fallback: open Practo profile if widget didn't load
+        window.open(PRACTO_PROFILE_URL, '_blank', 'noopener,noreferrer');
     }
 
     // Initialize Practo booking handlers
@@ -260,6 +269,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     method: 'POST',
                     body: formData
                 });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
 
                 const result = await response.json();
 
@@ -329,19 +342,24 @@ document.addEventListener('DOMContentLoaded', function () {
     // ================================
     const orbs = document.querySelectorAll('.orb');
 
-    if (window.innerWidth > 768) {
+    if (orbs.length > 0 && window.innerWidth > 768) {
+        let ticking = false;
         window.addEventListener('mousemove', (e) => {
-            const mouseX = e.clientX / window.innerWidth;
-            const mouseY = e.clientY / window.innerHeight;
-
-            orbs.forEach((orb, index) => {
-                const speed = (index + 1) * 10;
-                const x = (mouseX - 0.5) * speed;
-                const y = (mouseY - 0.5) * speed;
-
-                orb.style.transform = `translate(${x}px, ${y}px)`;
-            });
-        });
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    const mouseX = e.clientX / window.innerWidth;
+                    const mouseY = e.clientY / window.innerHeight;
+                    orbs.forEach((orb, index) => {
+                        const speed = (index + 1) * 10;
+                        const x = (mouseX - 0.5) * speed;
+                        const y = (mouseY - 0.5) * speed;
+                        orb.style.transform = `translate(${x}px, ${y}px)`;
+                    });
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
     }
 
     // ================================
@@ -382,7 +400,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // ================================
     document.addEventListener('keydown', (e) => {
         // Close mobile menu with Escape
-        if (e.key === 'Escape' && navMenu.classList.contains('show-menu')) {
+        if (e.key === 'Escape' && navMenu && navMenu.classList.contains('show-menu')) {
             navMenu.classList.remove('show-menu');
             document.body.style.overflow = '';
         }
@@ -413,8 +431,7 @@ document.addEventListener('DOMContentLoaded', function () {
             fontBtns.forEach(btn => btn.classList.remove('active'));
             if (activeBtn) activeBtn.classList.add('active');
 
-            // Save preference
-            localStorage.setItem('blogFontSize', size);
+            safeSetItem('blogFontSize', size);
         }
 
         decreaseBtn.addEventListener('click', () => setFontSize('small', decreaseBtn));
@@ -422,7 +439,7 @@ document.addEventListener('DOMContentLoaded', function () {
         increaseBtn.addEventListener('click', () => setFontSize('large', increaseBtn));
 
         // Load saved preference
-        const savedSize = localStorage.getItem('blogFontSize');
+        const savedSize = safeGetItem('blogFontSize');
         if (savedSize) {
             const btnMap = {
                 small: decreaseBtn,
@@ -532,32 +549,3 @@ document.addEventListener('DOMContentLoaded', function () {
 
     console.log('First Physio website initialized successfully!');
 });
-
-// ================================
-// Utility Functions
-// ================================
-
-// Debounce function for performance
-function debounce(func, wait = 20) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// Throttle function for scroll events
-function throttle(func, limit = 100) {
-    let inThrottle;
-    return function (...args) {
-        if (!inThrottle) {
-            func.apply(this, args);
-            inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
-        }
-    };
-}
