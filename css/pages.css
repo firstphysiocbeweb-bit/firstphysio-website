@@ -2462,7 +2462,6 @@
 }
 
 .success-modal.show {
-    display: flex;
     opacity: 1;
 }
 

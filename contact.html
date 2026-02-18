@@ -292,17 +292,21 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="name">Full Name *</label>
-                                <input type="text" id="name" name="name" placeholder="Your name" required>
+                                <input type="text" id="name" name="name" placeholder="Your name" required
+                                    minlength="2" autocomplete="name">
                             </div>
                             <div class="form-group">
                                 <label for="phone">Phone Number *</label>
-                                <input type="tel" id="phone" name="phone" placeholder="Your phone number" required>
+                                <input type="tel" id="phone" name="phone" placeholder="Your phone number" required
+                                    pattern="[0-9]{10,15}" minlength="10" maxlength="15"
+                                    title="Please enter a valid phone number (10-15 digits)" autocomplete="tel">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" placeholder="Your email address">
+                            <input type="email" id="email" name="email" placeholder="Your email address"
+                                autocomplete="email">
                         </div>
 
                         <div class="form-group">
@@ -334,7 +338,7 @@
                             <label for="message">Your Message *</label>
                             <textarea id="message" name="message"
                                 placeholder="Tell us about your condition or how we can help you..."
-                                required></textarea>
+                                required minlength="10"></textarea>
                         </div>
 
                         <button type="submit" class="btn btn-primary btn-lg">
