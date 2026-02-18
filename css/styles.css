@@ -361,6 +361,7 @@ img {
     padding: 1rem 0;
     transition: all var(--transition-normal);
     background: rgba(11, 17, 32, 0.8);
+    -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
@@ -535,6 +536,7 @@ img {
         width: 80%;
         max-width: 400px;
         height: 100vh;
+        height: 100dvh;
         background: var(--bg-dark-secondary);
         flex-direction: column;
         justify-content: center;
@@ -582,6 +584,7 @@ img {
    ================================ */
 .hero {
     min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1967,6 +1970,7 @@ practo\:abs_widget:active {
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: var(--radius-xl);
     text-align: center;
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     transition: all var(--transition-normal);
     max-width: 600px;
@@ -2210,14 +2214,14 @@ practo\:abs_widget:active {
 
 .testimonials-page {
     display: none;
-    animation: fadeIn 0.4s ease;
+    animation: fadeInSlide 0.4s ease;
 }
 
 .testimonials-page.active {
     display: block;
 }
 
-@keyframes fadeIn {
+@keyframes fadeInSlide {
     from {
         opacity: 0;
         transform: translateX(20px);
