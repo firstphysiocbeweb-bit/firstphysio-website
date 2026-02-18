@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Combined scroll handler (header effect + active nav)
     function onScroll() {
         if (!header) return;
-        const currentScroll = window.pageYOffset;
+        const currentScroll = window.scrollY;
 
         // Add/remove scrolled class
         if (currentScroll > 50) {
@@ -399,10 +399,17 @@ document.addEventListener('DOMContentLoaded', function () {
     // Keyboard Navigation
     // ================================
     document.addEventListener('keydown', (e) => {
-        // Close mobile menu with Escape
-        if (e.key === 'Escape' && navMenu && navMenu.classList.contains('show-menu')) {
-            navMenu.classList.remove('show-menu');
-            document.body.style.overflow = '';
+        if (e.key === 'Escape') {
+            // Close mobile menu
+            if (navMenu && navMenu.classList.contains('show-menu')) {
+                navMenu.classList.remove('show-menu');
+                document.body.style.overflow = '';
+            }
+            // Close success modal
+            const modal = document.getElementById('success-modal');
+            if (modal && modal.classList.contains('show')) {
+                closeSuccessModal();
+            }
         }
     });
 
