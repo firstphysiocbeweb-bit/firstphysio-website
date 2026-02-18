@@ -4,6 +4,9 @@
 
 /* CSS Variables */
 :root {
+    /* Color Scheme */
+    color-scheme: dark;
+
     /* Brand Colors */
     --primary-blue: #1E4A8E;
     --primary-orange: #E85D04;
@@ -55,6 +58,8 @@
 
 /* Light Theme */
 [data-theme="light"] {
+    color-scheme: light;
+
     --bg-dark: #F8FAFC;
     --bg-dark-secondary: #E2E8F0;
     --bg-card: #FFFFFF;
@@ -99,11 +104,15 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
 html {
     scroll-behavior: smooth;
     font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 body {
@@ -113,6 +122,8 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     position: relative;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* Selection */
@@ -1767,6 +1778,7 @@ practo\:abs_widget:active {
     overflow: hidden;
     box-shadow: var(--shadow-lg), var(--shadow-glow-blue);
     transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+    touch-action: pan-y pinch-zoom;
 }
 
 .body-image-wrapper:hover {
@@ -2304,5 +2316,57 @@ practo\:abs_widget:active {
     .carousel-arrow svg {
         width: 20px;
         height: 20px;
+    }
+}
+
+/* ================================
+   Accessibility: Reduced Motion
+   ================================ */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    .pulse {
+        animation: none;
+    }
+
+    .orb {
+        animation: none;
+    }
+}
+
+/* ================================
+   Touch-friendly: Disable sticky hover on touch devices
+   ================================ */
+@media (hover: none) {
+
+    .service-card:hover,
+    .condition-card:hover,
+    .testimonial-card:hover,
+    .pain-not-found-cta:hover,
+    .body-image-wrapper:hover {
+        transform: none;
+    }
+}
+
+/* ================================
+   Landscape phone adjustments
+   ================================ */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        min-height: auto;
+        padding-top: 5rem;
+        padding-bottom: 2rem;
     }
 }

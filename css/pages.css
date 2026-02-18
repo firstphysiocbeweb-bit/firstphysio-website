@@ -2584,3 +2584,18 @@
             var(--hero-bg-image);
     }
 }
+
+/* ================================
+   Touch-friendly: Disable sticky hover on touch devices
+   ================================ */
+@media (hover: none) {
+
+    .value-large-card:hover,
+    .program-card:hover,
+    .condition-main-card:hover,
+    .appointment-card:hover,
+    .blog-card:hover,
+    .category-service-card:hover {
+        transform: none;
+    }
+}
