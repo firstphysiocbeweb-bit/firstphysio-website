@@ -3,6 +3,10 @@
 *.doc
 *.md
 *.pdf
+*.PDF
+
+# Design source files
+*.cdr
 
 # OS files
 .DS_Store

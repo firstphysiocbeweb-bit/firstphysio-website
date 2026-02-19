@@ -289,7 +289,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
 
             } catch (error) {
-                console.error('Form submission error:', error);
                 submitBtn.innerHTML = '<span>Error. Try again.</span>';
 
                 setTimeout(() => {
@@ -553,6 +552,4 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     initServiceReadMore();
-
-    console.log('First Physio website initialized successfully!');
 });
