@@ -2066,6 +2066,7 @@ practo\:abs_widget:active {
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     margin-top: 3rem;
+    min-width: 0;
 }
 
 .testimonial-card {
@@ -2075,6 +2076,8 @@ practo\:abs_widget:active {
     padding: 2rem;
     position: relative;
     transition: all var(--transition-normal);
+    min-width: 0;
+    overflow: hidden;
 }
 
 .testimonial-card::before {
@@ -2113,6 +2116,8 @@ practo\:abs_widget:active {
     color: var(--text-secondary);
     margin-bottom: 1.5rem;
     font-style: italic;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 .testimonial-header {
@@ -2177,6 +2182,8 @@ practo\:abs_widget:active {
     margin-top: auto;
     padding-top: 1rem;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
+    gap: 0.5rem;
+    flex-wrap: wrap;
 }
 
 .testimonial-card-compact {
@@ -2224,12 +2231,14 @@ practo\:abs_widget:active {
 
 .testimonials-container {
     flex: 1;
+    min-width: 0;
     overflow: hidden;
 }
 
 .testimonials-page {
     display: none;
     animation: fadeInSlide 0.4s ease;
+    min-width: 0;
 }
 
 .testimonials-page.active {
