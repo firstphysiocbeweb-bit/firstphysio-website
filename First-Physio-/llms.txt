@@ -1,0 +1,32 @@
+# First Physio - LLMs.txt
+# https://firstphysio.in
+
+## About
+First Physio is a premier physiotherapy clinic located in Coimbatore, Tamil Nadu, India.
+Founded by Dr. Augustine Joseph, the clinic specializes in evidence-based physiotherapy treatment.
+
+## Services
+- Musculoskeletal Physiotherapy
+- Sports Injury Rehabilitation
+- Neurological Rehabilitation
+- Geriatric Physiotherapy
+- Post-Surgical Rehabilitation
+- Pain Management
+
+## Conditions Treated
+- Back Pain (lower back, upper back, disc problems, sciatica)
+- Neck Pain (cervical pain, whiplash, tech neck)
+- Shoulder Pain (frozen shoulder, rotator cuff)
+- Knee Pain (ligament injuries, arthritis)
+- Hip Pain
+- Sports Injuries
+
+## Contact
+- Phone: 8870140001
+- Email: firstphysios@gmail.com
+- Address: 25, Srinath Lake View, Sungam Bypass Road, Coimbatore - 641045
+- Website: https://firstphysio.in
+
+## Social
+- Facebook: https://www.facebook.com/ourfirstphysio
+- Instagram: https://www.instagram.com/clinicfirstphysio/

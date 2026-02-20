@@ -1,0 +1,19 @@
+# Robots.txt for First Physio
+# https://firstphysio.in
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://firstphysio.in/sitemap.xml
+
+# Disallow admin/private areas (if any)
+Disallow: /admin/
+Disallow: /private/
+
+# Disallow internal/development files
+Disallow: /logo.cdr
+Disallow: /wrangler.jsonc
+Disallow: /First_Physio_Requirements.md
+Disallow: /PROJECT_STRUCTURE.md
+Disallow: /llms.txt
