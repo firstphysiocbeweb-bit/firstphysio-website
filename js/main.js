@@ -554,6 +554,27 @@ document.addEventListener('DOMContentLoaded', function () {
     initServiceReadMore();
 
     // ================================
+    // Email Obfuscation
+    // ================================
+    function initEmailObfuscation() {
+        const emailElements = document.querySelectorAll('.email-obfuscated');
+        emailElements.forEach(el => {
+            const user = el.getAttribute('data-user');
+            const domain = el.getAttribute('data-domain');
+            if (user && domain) {
+                const email = `${user}@${domain}`;
+                if (el.tagName === 'A') {
+                    el.href = `mailto:${email}`;
+                }
+                // If the element is empty, fill it with the email
+                if (el.textContent.trim() === '') {
+                    el.textContent = email;
+                }
+            }
+        });
+    }
+
+    // ================================
     // FAQ Toggle Functionality
     // ================================
     function initFAQToggle() {
@@ -561,7 +582,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         faqItems.forEach(item => {
             const question = item.querySelector('.faq-question');
-            
+
             question.addEventListener('click', () => {
                 // Close other open FAQ items
                 faqItems.forEach(otherItem => {
@@ -588,17 +609,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Calculate offset for fixed header (80px buffer)
                 const headerHeight = 80;
                 const targetPosition = contactForm.getBoundingClientRect().top + window.scrollY - headerHeight;
-                
+
                 window.scrollTo({
                     top: targetPosition,
                     behavior: 'smooth'
                 });
-                
+
                 // Focus on the form for accessibility
                 contactForm.focus({ preventScroll: true });
             }
         });
     }
 
+    initEmailObfuscation();
     initFAQToggle();
 });
