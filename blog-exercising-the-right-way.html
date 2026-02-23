@@ -511,7 +511,25 @@
     <practo:abs_widget widget="8f949f5b40674f28"></practo:abs_widget>
 
     <!-- Practo Booking Widget Script -->
-    <script src="https://www.practo.com/bundles/practopractoapp/js/abs_widget_helper.js" async></script>
+    <script src="https://www.practo.com/bundles/practopractoapp/js/abs_widget_helper.js" defer></script>
+
+    <!-- Ensure Practo widget is properly initialized -->
+    <script>
+        function waitForPractoWidget() {
+            if (typeof window.__PractoWidgetHelper === 'undefined' || !document.querySelector('practo\\:abs_widget')) {
+                // Widget script might still be loading, retry after a short delay
+                setTimeout(waitForPractoWidget, 100);
+            } else {
+                // Widget has been initialized, allow user interactions
+                console.log('Practo widget initialized successfully');
+            }
+        }
+        
+        // Start checking for widget initialization after a brief delay
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(waitForPractoWidget, 500);
+        });
+    </script>
 
     <script src="js/main.js"></script>
 </body>

@@ -225,19 +225,62 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Function to trigger the Practo widget
+    // Function to trigger the Practo widget with proper async handling
     const PRACTO_PROFILE_URL = 'https://www.practo.com/coimbatore/doctor/augustine-joseph-physiotherapist';
+    const PRACTO_WIDGET_ID = '8f949f5b40674f28';
 
     function triggerPractoWidget() {
-        const practoWidget = document.querySelector('practo\\:abs_widget, [widget]');
-        if (practoWidget) {
-            const practoButton = practoWidget.querySelector('a, button, [role="button"]') || practoWidget;
-            if (practoButton && practoButton.click) {
-                practoButton.click();
-                return;
+        // Check if Practo widget script has loaded
+        if (typeof window.__PractoWidgetHelper !== 'undefined') {
+            // Practo script is loaded, try to use its API
+            try {
+                // Try to trigger via Practo's widget helper
+                if (window.__PractoWidgetHelper.openWidget) {
+                    window.__PractoWidgetHelper.openWidget(PRACTO_WIDGET_ID);
+                    return;
+                }
+            } catch (e) {
+                console.log('Practo widget helper error:', e);
             }
         }
-        // Fallback: open Practo profile if widget didn't load
+
+        // Fallback: Try to find and click the widget element directly
+        const practoWidget = document.querySelector('practo-abs-widget, [data-widget-id="' + PRACTO_WIDGET_ID + '"], .practo-widget');
+        if (practoWidget) {
+            try {
+                // Try multiple approaches to trigger the widget
+                const clickableElement = practoWidget.querySelector('a:not([data-no-click]), button, [role="button"]') || practoWidget;
+                if (clickableElement && clickableElement.click) {
+                    clickableElement.click();
+                    return;
+                }
+                // Try dispatching click event
+                clickableElement.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
+                return;
+            } catch (e) {
+                console.log('Error triggering widget element:', e);
+            }
+        }
+
+        // Final fallback: Wait for Practo script to load and retry
+        if (typeof window.__PractoWidgetHelper === 'undefined') {
+            let retryCount = 0;
+            const retryInterval = setInterval(() => {
+                retryCount++;
+                if (typeof window.__PractoWidgetHelper !== 'undefined' || retryCount > 20) {
+                    clearInterval(retryInterval);
+                    if (typeof window.__PractoWidgetHelper !== 'undefined') {
+                        triggerPractoWidget(); // Recursive call after script loads
+                        return;
+                    }
+                    // If still not loaded after retries, open Practo profile
+                    window.open(PRACTO_PROFILE_URL, '_blank', 'noopener,noreferrer');
+                }
+            }, 250);
+            return;
+        }
+
+        // Last resort: open Practo profile if widget didn't load
         window.open(PRACTO_PROFILE_URL, '_blank', 'noopener,noreferrer');
     }
 
