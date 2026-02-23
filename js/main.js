@@ -576,5 +576,29 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // ================================
+    // FAQ CTA Button Handler
+    // ================================
+    const faqCtaButton = document.querySelector('.faq-cta a');
+    if (faqCtaButton) {
+        faqCtaButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                // Calculate offset for fixed header (80px buffer)
+                const headerHeight = 80;
+                const targetPosition = contactForm.getBoundingClientRect().top + window.scrollY - headerHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+                
+                // Focus on the form for accessibility
+                contactForm.focus({ preventScroll: true });
+            }
+        });
+    }
+
     initFAQToggle();
 });
