@@ -220,32 +220,25 @@ document.addEventListener('DOMContentLoaded', function () {
         bookingButtons.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
-                triggerPractoWidget();
+                
+                // Check if global triggerPractoWidget is available (from practo-init.js)
+                if (typeof window.triggerPractoWidget === 'function') {
+                    window.triggerPractoWidget();
+                } else {
+                    console.warn('Practo widget not initialized yet. Please wait...');
+                    // Wait a moment and try again
+                    setTimeout(() => {
+                        if (typeof window.triggerPractoWidget === 'function') {
+                            window.triggerPractoWidget();
+                        }
+                    }, 500);
+                }
             });
         });
     }
 
-    // Function to trigger the Practo widget
-    const PRACTO_PROFILE_URL = 'https://www.practo.com/coimbatore/doctor/augustine-joseph-physiotherapist';
-
-    function triggerPractoWidget() {
-        const practoWidget = document.querySelector('practo\\:abs_widget, [widget]');
-        if (practoWidget) {
-            const practoButton = practoWidget.querySelector('a, button, [role="button"]') || practoWidget;
-            if (practoButton && practoButton.click) {
-                practoButton.click();
-                return;
-            }
-        }
-        // Fallback: open Practo profile if widget didn't load
-        window.open(PRACTO_PROFILE_URL, '_blank', 'noopener,noreferrer');
-    }
-
     // Initialize Practo booking handlers
     initPractoBooking();
-
-    // Make triggerPractoWidget available globally for inline onclick handlers
-    window.triggerPractoWidget = triggerPractoWidget;
 
     // ================================
     // Form Handling - Web3Forms Integration
