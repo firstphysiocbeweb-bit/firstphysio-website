@@ -552,4 +552,27 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     initServiceReadMore();
+
+    // ================================
+    // Email Obfuscation
+    // ================================
+    function initEmailObfuscation() {
+        const emailElements = document.querySelectorAll('.email-obfuscated');
+        emailElements.forEach(el => {
+            const user = el.getAttribute('data-user');
+            const domain = el.getAttribute('data-domain');
+            if (user && domain) {
+                const email = `${user}@${domain}`;
+                if (el.tagName === 'A') {
+                    el.href = `mailto:${email}`;
+                }
+                // If the element is empty, fill it with the email
+                if (el.textContent.trim() === '') {
+                    el.textContent = email;
+                }
+            }
+        });
+    }
+
+    initEmailObfuscation();
 });
