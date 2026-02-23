@@ -1,5 +1,5 @@
 # First Physio - LLMs.txt
-# https://firstphysio.in
+# https://firstphysio.net
 
 ## About
 First Physio is a premier physiotherapy clinic located in Coimbatore, Tamil Nadu, India.
@@ -39,7 +39,7 @@ Monday - Sunday: 8:00 AM - 8:00 PM
 - Phone: 8870140001
 - Email: firstphysios@gmail.com
 - Address: 25, Srinath Lake View, Sungam Bypass Road, Coimbatore - 641045
-- Website: https://firstphysio.in
+- Website: https://firstphysio.net
 
 ## Social
 - Facebook: https://www.facebook.com/ourfirstphysio

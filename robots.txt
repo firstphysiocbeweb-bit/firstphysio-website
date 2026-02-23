@@ -1,11 +1,11 @@
 # Robots.txt for First Physio
-# https://firstphysio.in
+# https://firstphysio.net
 
 User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://firstphysio.in/sitemap.xml
+Sitemap: https://firstphysio.net/sitemap.xml
 
 # Disallow admin/private areas (if any)
 Disallow: /admin/
@@ -23,4 +23,4 @@ Disallow: /indexnow-key.txt
 
 # IndexNow
 # Key: 8f949f5b40674f2849dc976f5b40674f28
-# Key Location: https://firstphysio.in/8f949f5b40674f2849dc976f5b40674f28.txt
+# Key Location: https://firstphysio.net/8f949f5b40674f2849dc976f5b40674f28.txt
