@@ -593,8 +593,8 @@ When you deploy to Cloudflare Pages:
    - Use lazy loading
 
 5. **URL Structure**
-   - ✅ Good: `firstphysio.in/services/sports-physiotherapy`
-   - ❌ Bad: `firstphysio.in/page?id=123`
+   - ✅ Good: `firstphysio.net/services/sports-physiotherapy`
+   - ❌ Bad: `firstphysio.net/page?id=123`
 
 #### Step 3: Technical SEO (During Development)
 
@@ -612,9 +612,9 @@ When you deploy to Cloudflare Pages:
    <!-- public/sitemap.xml -->
    <?xml version="1.0" encoding="UTF-8"?>
    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-     <url><loc>https://firstphysio.in/</loc></url>
-     <url><loc>https://firstphysio.in/about</loc></url>
-     <url><loc>https://firstphysio.in/services</loc></url>
+     <url><loc>https://firstphysio.net/</loc></url>
+     <url><loc>https://firstphysio.net/about</loc></url>
+     <url><loc>https://firstphysio.net/services</loc></url>
      <!-- ... all pages -->
    </urlset>
    ```
@@ -624,7 +624,7 @@ When you deploy to Cloudflare Pages:
    # public/robots.txt
    User-agent: *
    Allow: /
-   Sitemap: https://firstphysio.in/sitemap.xml
+   Sitemap: https://firstphysio.net/sitemap.xml
    ```
 
 #### Step 4: Local SEO (Critical for Clinics)
@@ -696,7 +696,7 @@ When you deploy to Cloudflare Pages:
 |---|------|--------|-------|
 | 1 | Logo (high-res PNG/SVG) | ⏳ | For color extraction |
 | 2 | Practo Profile URL | ⏳ | For booking redirect |
-| 3 | Preferred domain name | ⏳ | e.g., firstphysio.in |
+| 3 | Preferred domain name | ⏳ | e.g., firstphysio.net |
 
 ### Content Required
 | # | Item | Details | Status |
