@@ -574,5 +574,53 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // ================================
+    // FAQ Toggle Functionality
+    // ================================
+    function initFAQToggle() {
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+
+            question.addEventListener('click', () => {
+                // Close other open FAQ items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+
+                // Toggle current item
+                item.classList.toggle('active');
+            });
+        });
+    }
+
+    // ================================
+    // FAQ CTA Button Handler
+    // ================================
+    const faqCtaButton = document.querySelector('.faq-cta a');
+    if (faqCtaButton) {
+        faqCtaButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                // Calculate offset for fixed header (80px buffer)
+                const headerHeight = 80;
+                const targetPosition = contactForm.getBoundingClientRect().top + window.scrollY - headerHeight;
+
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+
+                // Focus on the form for accessibility
+                contactForm.focus({ preventScroll: true });
+            }
+        });
+    }
+
     initEmailObfuscation();
+    initFAQToggle();
 });
